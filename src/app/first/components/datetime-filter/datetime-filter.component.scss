@@ -1,0 +1,36 @@
+.filter-container {
+  display:  grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-column-gap: 2em;
+  height: 8em;
+}
+
+.filter-container .date {
+  display:  grid;
+  grid-template-rows: 1fr 3fr;
+}
+
+.filter-container .slider {
+  display:  grid;
+  grid-template-rows: 1fr 3fr;
+  align-items: center;
+}
+
+.filter-container .mat-slider {
+  width: 100%;
+}
+
+.submit {
+  // Center vertical-align
+  display: flex;
+  align-items: center;
+}
+
+.submit button .mat-button-wrapper {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+form {
+  margin-bottom: 4em;
+}

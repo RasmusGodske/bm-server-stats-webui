@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap");
+
+// 1. Default theme
+$light-primary: mat-palette($mat-indigo);
+$light-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-warn: mat-palette($mat-red);
+$light-background-color: map_get($mat-blue-grey, 900);
+
+
+$light-theme: mat-light-theme(
+  $light-primary,
+  $light-accent,
+  $light-warn
+);
+
+$light-background: map-get($light-theme, background);
+$light-background: map_merge($light-background, (background: $light-background-color));
+$light-theme: map_merge($light-theme, (background: $light-background));
+
+
+// 2. Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-background-color: map_get($mat-blue-grey, 200);
+
+$dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+      warn: $dark-warn,
+    ),
+  )
+);
+
+$dark-background: map-get($dark-theme, background);
+$dark-background: map_merge($dark-background, (background: $dark-background-color));
+$dark-theme: map_merge($dark-theme, (background: $dark-background));
+
+// 3. Define a custom heading typography config
+$heading-font-family: "'Work Sans', sans-serif";
+$typography: mat-typography-config(
+  $display-4: mat-typography-level(112px, $font-family: $heading-font-family),
+  $display-3: mat-typography-level(56px, $font-family: $heading-font-family),
+  $display-2: mat-typography-level(45px, $font-family: $heading-font-family),
+  $display-1: mat-typography-level(34px, $font-family: $heading-font-family),
+  $headline: mat-typography-level(24px, $font-family: $heading-font-family),
+  $title: mat-typography-level(20px, $font-family: $heading-font-family),
+);
