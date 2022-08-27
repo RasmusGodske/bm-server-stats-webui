@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { ServerPlaytimeData } from 'src/app/models/ServerPlaytimeData.';
+import { environment } from 'src/environments/environment';
+
 import * as moment from 'moment';
 
 interface ServerPlayTimeResponse {
@@ -27,6 +29,7 @@ interface ServerPlayTimeQueryOptions {
 })
 export class ServerService {
 
+  private baseUrl: string = environment.apiUrl;
 
   private _serverPlaytimeData = new BehaviorSubject<ServerPlaytimeData[]>([]);
   public ServerPlaytimeData = this._serverPlaytimeData.asObservable();
@@ -34,10 +37,12 @@ export class ServerService {
   private _is_loading = new BehaviorSubject<boolean>(false);
   public IsLoading = this._is_loading.asObservable();
 
-  constructor(private http: HttpClient, private datepipe: DatePipe) { }
+  constructor(private http: HttpClient, private datepipe: DatePipe) {
+
+  }
 
   async fetchServerPlaytimeData(options: ServerPlayTimeQueryOptions): Promise<ServerPlaytimeData[]> {
-    const url: string = 'http://192.168.12.40:8080/server_playtimes/';
+    const url: string = `${this.baseUrl}/server_playtimes/`;
 
     const params = {
       date: options.date.format('YYYY-MM-DD'),

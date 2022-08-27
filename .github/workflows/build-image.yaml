@@ -1,0 +1,56 @@
+name: Build Docker Image
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+    paths:
+      - src/*
+      - angular.json
+      - Dockerfile
+      - package.json
+      - .github/workflows/build-image.yaml
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  resolve-versions:
+    name: Resolve versions
+    runs-on: ubuntu-latest
+    outputs:
+      # chart: ${{ steps.resolve-chart.outputs.semver }}
+      image: ${{ steps.resolve-image.outputs.semver }}
+    steps:
+      - uses: actions/checkout@v3
+      # - name: Resolve chart version
+      #   id: resolve-chart
+      #   uses: Energinet-DataHub/.github/.github/actions/get-semver@main
+      #   with:
+      #     yaml_file: services/DataSync.API/chart/Chart.yaml
+      #     yaml_path: version
+
+      - name: Resolve image version
+        id: resolve-image
+        uses: Energinet-DataHub/.github/.github/actions/get-semver@main
+        with:
+          yaml_file: image-version.yaml
+          yaml_path: version
+
+  publish:
+    name: Publish container
+    needs:
+      - resolve-versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build image
+        uses: Energinet-DataHub/.github/.github/actions/build-and-push-container@main
+        with:
+          dockerfile: Dockerfile
+          image-name: bm-server-stats-webui
+          image-tag: ${{ needs.resolve-versions.outputs.image }}
+          docker-context: .
