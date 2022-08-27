@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ServerFilter } from 'src/app/first/components/datetime-filter/datetime-filter.component';
+import { ServerFilter } from 'src/app/server-playtime-view/components/datetime-filter/datetime-filter.component';
 import { ServerPlaytimeData } from 'src/app/models/ServerPlaytimeData.';
 import { ServerService } from 'src/app/services/server.service';
 import * as moment from 'moment';
@@ -12,21 +12,15 @@ export interface ServerTableData {
   unique_players: number;
 }
 
-const SERVER_DATA: ServerTableData[] = [
-  {index: 1, name: 'Server 1', average_playtime: 10, unique_players: 100},
-  {index: 2, name: 'Server 2', average_playtime: 20, unique_players: 200},
-  {index: 3, name: 'Server 3', average_playtime: 30, unique_players: 300},
-  {index: 4, name: 'Server 4', average_playtime: 40, unique_players: 400},
-];
 
 @Component({
-  selector: 'app-first',
-  templateUrl: './first.component.html',
-  styleUrls: ['./first.component.scss'],
+  selector: 'app-server-playtime-view',
+  templateUrl: './server-playtime-view.component.html',
+  styleUrls: ['./server-playtime-view.component.scss'],
 })
-export class FirstComponent implements OnInit {
+export class ServerPlaytimeViewComponent implements OnInit {
   displayedColumns: string[] = ['index', 'name', 'average_playtime', 'unique_players'];
-  dataSource = SERVER_DATA;
+  dataSource = [];
 
   isLoading: boolean = false;
 

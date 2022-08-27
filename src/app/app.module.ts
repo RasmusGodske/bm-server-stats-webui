@@ -20,8 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DatetimeFilterComponent } from './first/components/datetime-filter/datetime-filter.component';
-import { FirstComponent } from './first/first.component';
+import { DatetimeFilterComponent } from './server-playtime-view/components/datetime-filter/datetime-filter.component';
+import { ServerPlaytimeViewComponent } from './server-playtime-view/server-playtime-view.component';
 import { SecondComponent } from './second/second.component';
 import { TopNavBarComponent } from './top-nav-bar/top-nav-bar.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -29,7 +29,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   declarations: [
     AppComponent,
     SecondComponent,
-    FirstComponent,
+    ServerPlaytimeViewComponent,
     TopNavBarComponent,
     DatetimeFilterComponent,
   ],

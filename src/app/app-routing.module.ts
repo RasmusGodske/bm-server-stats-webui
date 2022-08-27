@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FirstComponent } from 'src/app/first/first.component';
+import { ServerPlaytimeViewComponent } from 'src/app/server-playtime-view/server-playtime-view.component';
 import { SecondComponent } from 'src/app/second/second.component';
 
 const routes: Routes = [
-  { path: 'first', component: FirstComponent },
+  { path: 'first', component: ServerPlaytimeViewComponent },
   { path: 'second', component: SecondComponent },
 ];
 
