@@ -59,7 +59,7 @@ export class FirstComponent implements OnInit {
     this.configService.updateServerPlaytimeData(
       {
         date: moment(new Date()).utc(),
-        hour: new Date().getHours(),
+        hour: moment(new Date()).utc().hours(),
         min_players: 0,
       }
     );
