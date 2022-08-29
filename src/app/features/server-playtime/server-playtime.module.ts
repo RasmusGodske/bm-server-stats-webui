@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PageServerPlaytimeRootComponent } from './pages/page-server-playtime-root/page-server-playtime-root.component';
+import { PageServerPlaytimeServersComponent } from './pages/page-server-playtime-servers/page-server-playtime-servers.component';
 import { MatCardModule } from '@angular/material/card';
 import { DatetimeFilterComponent } from './components/datetime-filter/datetime-filter.component';
 import { MatTableModule } from '@angular/material/table';
@@ -16,11 +16,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { PageServerPlaytimeRootComponent } from './pages/page-server-playtime-root/page-server-playtime-root.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    PageServerPlaytimeRootComponent,
+    PageServerPlaytimeServersComponent,
     DatetimeFilterComponent,
+    PageServerPlaytimeRootComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import {MatSortModule} from '@angular/material/sort';
     MatButtonModule,
     MatPaginatorModule,
     MatSortModule,
+    RouterModule,
   ],
   providers: [
     DatePipe,

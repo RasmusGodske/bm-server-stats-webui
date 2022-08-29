@@ -1,96 +1,49 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { ServerFilter } from '../../components/datetime-filter/datetime-filter.component';
-import { ServerService } from '../../services/server.service';
-import * as moment from 'moment';
-import { ServerPlaytimeData } from '../../models/ServerPlaytimeData';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-export interface ServerTableData {
-  index: number;
+export interface Breadcrump {
   name: string;
-  average_playtime: number;
-  unique_players: number;
+  path: string;
 }
-
 
 @Component({
   selector: 'app-page-server-playtime-root',
   templateUrl: './page-server-playtime-root.component.html',
-  styleUrls: ['./page-server-playtime-root.component.scss'],
+  styleUrls: ['./page-server-playtime-root.component.scss']
 })
-export class PageServerPlaytimeRootComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['index', 'name', 'average_playtime', 'unique_players'];
-  dataSource = [];
+export class PageServerPlaytimeRootComponent implements OnInit {
 
-  isLoading: boolean = false;
+  breadcrumps: Breadcrump[] = [];
 
-  startDate = new Date();
-  selectedDate: Date | null = new Date();
+  constructor(private router: Router) {
+    this.router.events.subscribe((val) => {
+      console.log("path changed", val);
+      this.breadcrumps = this.getBreadCrumps();
+    });
+  }
 
-  serversDataSource = new MatTableDataSource<ServerTableData>([])
+  getBreadCrumps(): Breadcrump[] {
+    const pathParts = this.router.url.split('/');
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
-  @ViewChild(MatSort) sort: MatSort | null = new MatSort();
+    // Remove first part
+    pathParts.shift();
 
-  minPlayers: number = 0;
+    for (const pathPart of pathParts) {
+      console.log(pathPart);
+    }
 
-  constructor(private configService: ServerService) {
-
-
-    this.configService.ServerPlaytimeData.pipe(
-      map((server_playtime_data_list: ServerPlaytimeData[]) => {
-        const data: ServerTableData[] = server_playtime_data_list.map(
-          (server_playtime_data, index: number) => {
-            const record: ServerTableData = {
-              index: index + 1,
-              name: server_playtime_data.server.name,
-              average_playtime: server_playtime_data.average_player_playtime,
-              unique_players: server_playtime_data.unique_player_count,
-            }
-            return record;
-        });
-
-        this.serversDataSource.data = data;
-      })
-    ).subscribe();
-
-    this.configService.IsLoading.subscribe((is_loading) => {
-      this.isLoading = is_loading;
+    const breadcrumps = pathParts.map((str, index) => {
+      return {
+        name: str,
+        path: '/' + pathParts.slice(0, index + 1).join('/'),
+      }
     });
 
-    this.configService.updateServerPlaytimeData(
-      {
-        date: moment(new Date()).utc(),
-        hour: moment(new Date()).utc().hours() -1,
-        min_players: 0,
-      }
-    );
+    return breadcrumps
   }
+
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit() {
-    this.serversDataSource.paginator = this.paginator;
-    this.serversDataSource.sort = this.sort;
-  }
-
-  async filterUpdated(filter: ServerFilter) {
-    console.log(filter);
-
-    const ServerPlaytimeDataObservable = this.configService.updateServerPlaytimeData(
-      {
-        date: filter.selectedDate,
-        hour: filter.selectedHour,
-        min_players: filter.minPlayers || 0,
-      }
-    );
-
-    console.log(ServerPlaytimeDataObservable);
   }
 
 }
