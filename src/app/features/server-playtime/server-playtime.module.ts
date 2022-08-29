@@ -14,6 +14,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     DatePipe,
