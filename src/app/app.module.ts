@@ -9,13 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SecondComponent } from './second/second.component';
 import { TopNavBarComponent } from './core/components/top-nav-bar/top-nav-bar.component';
 import { ServerPlaytimeModule } from 'src/app/features/server-playtime/server-playtime.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SecondComponent,
     TopNavBarComponent,
   ],
   imports: [
