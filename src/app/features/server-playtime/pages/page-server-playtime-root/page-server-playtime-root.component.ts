@@ -17,7 +17,6 @@ export class PageServerPlaytimeRootComponent implements OnInit {
 
   constructor(private router: Router) {
     this.router.events.subscribe((val) => {
-      console.log("path changed", val);
       this.breadcrumps = this.getBreadCrumps();
     });
   }
@@ -28,9 +27,6 @@ export class PageServerPlaytimeRootComponent implements OnInit {
     // Remove first part
     pathParts.shift();
 
-    for (const pathPart of pathParts) {
-      console.log(pathPart);
-    }
 
     const breadcrumps = pathParts.map((str, index) => {
       return {

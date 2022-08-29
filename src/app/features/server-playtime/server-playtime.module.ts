@@ -18,12 +18,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { PageServerPlaytimeRootComponent } from './pages/page-server-playtime-root/page-server-playtime-root.component';
 import { RouterModule } from '@angular/router';
+import { PageServerPlaytimeServerComponent } from 'src/app/features/server-playtime/pages/page-server-playtime-server/page-server-playtime-server.component';
 
 @NgModule({
   declarations: [
-    PageServerPlaytimeServersComponent,
     DatetimeFilterComponent,
+    PageServerPlaytimeServersComponent,
     PageServerPlaytimeRootComponent,
+    PageServerPlaytimeServerComponent,
   ],
   imports: [
     CommonModule,

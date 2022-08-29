@@ -4,8 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 
 
-export interface ServerTableData {
-  index: number;
+export interface Server {
   name: string;
   average_playtime: number;
   unique_players: number;
@@ -19,12 +18,13 @@ export interface ServerTableData {
 })
 export class PageServerPlaytimeServerComponent implements OnInit {
 
+  server_name: string = "Blood Bound"
+
   constructor(private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     const heroId = this.route.snapshot.paramMap.get('id');
-    console.log(heroId);
   }
 }
