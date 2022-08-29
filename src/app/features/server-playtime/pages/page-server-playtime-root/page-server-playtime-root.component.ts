@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ServerFilter } from 'src/app/server-playtime-view/components/datetime-filter/datetime-filter.component';
-import { ServerPlaytimeData } from 'src/app/models/ServerPlaytimeData.';
-import { ServerService } from 'src/app/services/server.service';
+import { ServerFilter } from '../../components/datetime-filter/datetime-filter.component';
+import { ServerService } from '../../services/server.service';
 import * as moment from 'moment';
+import { ServerPlaytimeData } from '../../models/ServerPlaytimeData';
 
 export interface ServerTableData {
   index: number;
@@ -14,11 +14,11 @@ export interface ServerTableData {
 
 
 @Component({
-  selector: 'app-server-playtime-view',
-  templateUrl: './server-playtime-view.component.html',
-  styleUrls: ['./server-playtime-view.component.scss'],
+  selector: 'app-page-server-playtime-root',
+  templateUrl: './page-server-playtime-root.component.html',
+  styleUrls: ['./page-server-playtime-root.component.scss'],
 })
-export class ServerPlaytimeViewComponent implements OnInit {
+export class PageServerPlaytimeRootComponent implements OnInit {
   displayedColumns: string[] = ['index', 'name', 'average_playtime', 'unique_players'];
   dataSource = [];
 

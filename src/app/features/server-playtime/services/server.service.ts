@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
-import { ServerPlaytimeData } from 'src/app/models/ServerPlaytimeData.';
+import { ServerPlaytimeData } from '../models/ServerPlaytimeData';
 import { environment } from 'src/environments/environment';
 
 import * as moment from 'moment';
