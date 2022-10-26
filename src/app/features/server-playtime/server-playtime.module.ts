@@ -19,6 +19,8 @@ import {MatSortModule} from '@angular/material/sort';
 import { PageServerPlaytimeRootComponent } from './pages/page-server-playtime-root/page-server-playtime-root.component';
 import { RouterModule } from '@angular/router';
 import { PageServerPlaytimeServerComponent } from 'src/app/features/server-playtime/pages/page-server-playtime-server/page-server-playtime-server.component';
+import { PlaytimeChartComponent } from './components/playtime-chart/playtime-chart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { PageServerPlaytimeServerComponent } from 'src/app/features/server-playt
     PageServerPlaytimeServersComponent,
     PageServerPlaytimeRootComponent,
     PageServerPlaytimeServerComponent,
+    PlaytimeChartComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { PageServerPlaytimeServerComponent } from 'src/app/features/server-playt
     MatPaginatorModule,
     MatSortModule,
     RouterModule,
+    NgChartsModule,
   ],
   providers: [
     DatePipe,
